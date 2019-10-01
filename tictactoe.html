@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+var clicks = 0;
+var player = "x";
+var winx = 0;
+var wino = 0;
+
+function win(winner) {
+    if (winner == "x") {
+        winx += 1; }
+    else {
+        wino += 1; }
+    document.getElementById("player_score").innerHTML = "Player x:" + winx + " - Player o:" + wino; }
+
+
+function winnercontrol() {
+    if (document.getElementById("panel5").innerHTML != " ? ")  {
+        if (document.getElementById("panel1").innerHTML == document.getElementById("panel5").innerHTML) {
+            if (document.getElementById("panel9").innerHTML == document.getElementById("panel5").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel5").innerHTML;
+                win(document.getElementById("panel5").innerHTML);
+                return; } }
+        if (document.getElementById("panel2").innerHTML == document.getElementById("panel5").innerHTML) {
+            if (document.getElementById("panel8").innerHTML == document.getElementById("panel5").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel5").innerHTML;
+                win(document.getElementById("panel5").innerHTML);
+                return; } }
+        if (document.getElementById("panel3").innerHTML == document.getElementById("panel5").innerHTML) {
+            if (document.getElementById("panel7").innerHTML == document.getElementById("panel5").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel5").innerHTML;
+                win(document.getElementById("panel5").innerHTML);
+                return; } }
+        if (document.getElementById("panel4").innerHTML == document.getElementById("panel5").innerHTML) {
+            if (document.getElementById("panel6").innerHTML == document.getElementById("panel5").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel5").innerHTML;
+                win(document.getElementById("panel5").innerHTML);
+                return; } } }
+    if (document.getElementById("panel1").innerHTML != " ? ")  {
+        console.log("panel1 != ?");
+        if (document.getElementById("panel2").innerHTML == document.getElementById("panel1").innerHTML) {
+            if (document.getElementById("panel3").innerHTML == document.getElementById("panel1").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel1").innerHTML;
+                win(document.getElementById("panel1").innerHTML);
+                return; } }
+        if (document.getElementById("panel4").innerHTML == document.getElementById("panel1").innerHTML) {
+            if (document.getElementById("panel7").innerHTML == document.getElementById("panel1").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel1").innerHTML;
+                win(document.getElementById("panel1").innerHTML);
+                return; } } }
+    if (document.getElementById("panel9").innerHTML != " ? ")  {
+        if (document.getElementById("panel8").innerHTML == document.getElementById("panel9").innerHTML) {
+            if (document.getElementById("panel7").innerHTML == document.getElementById("panel9").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel9").innerHTML;
+                win(document.getElementById("panel9").innerHTML);
+                return; } }
+        if (document.getElementById("panel6").innerHTML == document.getElementById("panel9").innerHTML) {
+            if (document.getElementById("panel3").innerHTML == document.getElementById("panel9").innerHTML) {
+                document.getElementById("mytext").innerHTML = "Our winner is: " + document.getElementById("panel9").innerHTML;
+                win(document.getElementById("panel9").innerHTML);
+                return; } } } }
+
+function fieldcontrol(id,symbol) {
+        if (symbol == player) {
+            if (document.getElementById(id).innerHTML == " ? ") {
+                if (document.getElementById("mytext").innerHTML.slice(0,10) != "Our winner") {
+                    document.getElementById(id).innerHTML = symbol;
+                    clicks += 1;
+                    if (symbol == "x") {
+                        player = "o";
+                        document.getElementById("player").innerHTML = "o!";
+                        document.getElementById(id).bgColor = "red" }
+                    else {
+                        player = "x";
+                        document.getElementById("player").innerHTML = "x!";
+                        document.getElementById(id).bgColor = "blue" }
+                    winnercontrol();
+            } } }
+        if (clicks == 9) {
+            if (document.getElementById("mytext").innerHTML.slice(0,10) != "Our winner") {
+                document.getElementById("mytext").innerHTML = "Try again!"} } }
+
+</script>
+</head>
+
+<body>
+
+<h1 style="color:green">TicTacToe with HTML</h1>
+<h2 id="player_score">Player x:0 - Player o:0</h2>
+<br>
+<table>
+    <tr>
+    <td>
+        <table border=10>
+            <tr>
+                <caption>
+                Player x
+                </caption>
+            </tr>
+            <tr>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel1","x")
+                >panel 1 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel2","x")
+                >panel 2 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel3","x")
+                >panel 3 </button>
+                 </td>
+             </tr>
+             <tr>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel4","x")
+                >panel 4 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel5","x")
+                >panel 5 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel6","x")
+                >panel 6 </button>
+                 </td>
+             </tr>
+             <tr>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel7","x")
+                >panel 7 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel8","x")
+                >panel 8 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel9","x")
+                >panel 9 </button>
+                 </td>
+             </tr>
+        </table>
+    </td>
+    <td>
+        <table border=10 id="playtable">
+            <tr>
+                <td id="panel1" style="padding:10px"> ? </td>
+                <td id="panel2" style="padding:10px"> ? </td>
+                <td id="panel3" style="padding:10px"> ? </td>
+            </tr>
+            <tr>
+                <td id="panel4" style="padding:10px"> ? </td>
+                <td id="panel5" style="padding:10px"> ? </td>
+                <td id="panel6" style="padding:10px"> ? </td>
+            </tr>
+            <tr>
+                <td id="panel7" style="padding:10px"> ? </td>
+                <td id="panel8" style="padding:10px"> ? </td>
+                <td id="panel9" style="padding:10px"> ? </td>
+            </tr>
+        </table>
+    </td>
+    <td>
+        <table border=10>
+            <caption>
+                Player o
+            </caption>
+            <tr>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel1","o")
+                >panel 1 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel2","o")
+                >panel 2 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel3","o")
+                >panel 3 </button>
+                 </td>
+             </tr>
+             <tr>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel4","o")
+                >panel 4 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel5","o")
+                >panel 5 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel6","o")
+                >panel 6 </button>
+                 </td>
+             </tr>
+             <tr>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel7","o")
+                >panel 7 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel8","o")
+                >panel 8 </button>
+                </td>
+                <td>
+                <button type="button"
+                onclick = fieldcontrol("panel9","o")
+                >panel 9 </button>
+                 </td>
+             </tr>
+        </table>
+        </td>
+    </tr>
+    
+    </table>
+    <br>
+    <br>
+    <br>
+        <button type="button"
+                onclick="document.getElementById('panel1').innerHTML = ' ? ',
+                         document.getElementById('panel1').bgColor = '',
+                         document.getElementById('panel2').innerHTML = ' ? ',
+                         document.getElementById('panel2').bgColor = '',
+                         document.getElementById('panel3').innerHTML = ' ? ',
+                         document.getElementById('panel3').bgColor = '',
+                         document.getElementById('panel4').innerHTML = ' ? ',
+                         document.getElementById('panel4').bgColor = '',
+                         document.getElementById('panel5').innerHTML = ' ? ',
+                         document.getElementById('panel5').bgColor = '',
+                         document.getElementById('panel6').innerHTML = ' ? ',
+                         document.getElementById('panel6').bgColor = '',
+                         document.getElementById('panel7').innerHTML = ' ? ',
+                         document.getElementById('panel7').bgColor = '',
+                         document.getElementById('panel8').innerHTML = ' ? ',
+                         document.getElementById('panel8').bgColor = '',
+                         document.getElementById('panel9').innerHTML = ' ? ',
+                         document.getElementById('panel9').bgColor = '',
+                         document.getElementById('mytext').innerHTML = 'No winner yet!',
+                         clicks = 0">
+                 Play again </button>
+<br>
+<p id="mytext">
+    No winner yet!
+</p>
+<table>
+    <tr>
+        <td>
+        It's your turn,
+        </td>
+        <td id="player">
+        x!
+        </td>
+    </tr>
+</table>
+<br>
+</body>
+</html> 
